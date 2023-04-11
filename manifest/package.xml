@@ -5,6 +5,7 @@
         <members>LWCAccountHelper</members>
         <name>ApexClass</name>
     </types>
+    <!-- sean.nuttall1 -->
     <types>
         <members>accountList</members>
         <members>accountSearch</members>
