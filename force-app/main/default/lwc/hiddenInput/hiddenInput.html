@@ -1,0 +1,5 @@
+<template>
+    <h2>{displayText}</h2>
+    <lightning-button variant="brand" label="Click Me!" onclick={handleClick}></lightning-button>
+    <lightning-input if:true={displayInput} type="text" label="Enter some text" value={displayText} onchange={handleChange}></lightning-input>
+</template>

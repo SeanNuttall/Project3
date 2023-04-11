@@ -1,0 +1,8 @@
+<template>
+    <template for:each={bands} for:item="band">
+        <div key={band.name}>
+            <p>{band.name} : {band.description}</p>
+            <img src={band.image} />
+        </div>
+    </template>
+</template>

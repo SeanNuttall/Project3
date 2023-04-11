@@ -1,0 +1,9 @@
+<template>
+    <lightning-input label="Add to List" value={_textValue} onchange={handleInputChange}>
+
+    </lightning-input>
+    <lightning-button variant="success" onclick={handleClick} label="Add"></lightning-button>
+    <template for:each={textValues} for:item="textValue" for:index="index">
+        {textValue}
+    </template>
+</template>
