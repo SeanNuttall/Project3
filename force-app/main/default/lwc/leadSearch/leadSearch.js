@@ -1,9 +1,9 @@
 import { LightningElement, wire } from 'lwc';
 import { getObjectInfo } from 'lightning/uiObjectInfoApi';
 import { getPicklistValues } from 'lightning/uiObjectInfoApi';
-import LEAD_OBJECT from '@salesforce/schema/Account';
-import STATUS_FIELD from '@salesforce/schema/Account.Industry';
-import RATING_FIELD from '@salesforce/schema/Account.Rating';
+import LEAD_OBJECT from '@salesforce/schema/Lead';
+import STATUS_FIELD from '@salesforce/schema/Lead.Status';
+import RATING_FIELD from '@salesforce/schema/Lead.Rating';
 
 export default class AccountSearch extends LightningElement {
     companySearchTerm;

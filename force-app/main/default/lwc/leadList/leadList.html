@@ -1,9 +1,17 @@
 <template>
     <lightning-card  title="Leads">
+        <div slot="actions">
+            <lightning-button-group>
+                <lightning-button label="Edit"></lightning-button>
+                <lightning-button label="Delete"></lightning-button>
+                <lightning-button label="New"></lightning-button>
+            </lightning-button-group>
+        </div>
         <template if:true={leadList}>
-            <lightning-datatable data={leadList} columns={columns} key-field="Id">
+            <lightning-datatable data={leadList} columns={columns} key-field="Id" onrowselection={getSelectedId}>
             </lightning-datatable>
         </template>
+        <p>{selectedIds}</p>
         <template if:true={error}>
             {error}
         </template>

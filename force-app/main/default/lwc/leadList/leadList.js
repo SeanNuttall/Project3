@@ -63,4 +63,13 @@ export default class LightningDatatableLWCExample extends LightningElement {
             this.error = error;
         }
     }
+    selectedIds;
+
+    getSelectedId(event) {
+        selectedIds = '';
+        const selectedRows = event.detail.selectedRows;
+        for (let i = 0; i<selectedRows.length; i++ ) {
+            this.selectedIds += selectedRows[i].Id + ',';    
+        }
+    }
 }

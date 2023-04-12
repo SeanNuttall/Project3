@@ -32,6 +32,8 @@ export default class AccountSearch extends LightningElement {
 
     handleIndustry(event) {
         this.industrySearchTerm = event.detail.value;
+        const selectedEvent = new CustomEvent("progressvaluechange", {detail: this.progressValue});
+        this.dispatchEvent(selectedEvent)
     }
 
     handleRating(event) {
