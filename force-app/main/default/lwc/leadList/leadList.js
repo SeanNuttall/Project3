@@ -1,5 +1,6 @@
 import { LightningElement , wire, track} from 'lwc';
 import getLeadList from '@salesforce/apex/LWCAccountHelper.getLeadList';
+import DELETE from '@salesforce/apex/LWCAccountHelper.Deleter';
 export default class LightningDatatableLWCExample extends LightningElement {
     @track columns = [{
             label: 'Lead name',
@@ -65,11 +66,24 @@ export default class LightningDatatableLWCExample extends LightningElement {
     }
     selectedIds;
 
-    getSelectedId(event) {
-        selectedIds = '';
-        const selectedRows = event.detail.selectedRows;
-        for (let i = 0; i<selectedRows.length; i++ ) {
-            this.selectedIds += selectedRows[i].Id + ',';    
-        }
+    getSelectedRec() {
+        var selectedRecords =  this.template.querySelector("lightning-datatable").getSelectedRows();
+        if(selectedRecords.length > 0){
+            console.log('selectedRecords are ', selectedRecords);
+   
+            let ids = '';
+            selectedRecords.forEach(currentItem => {
+                ids = ids + ',' + currentItem.Id;
+            });
+            this.selectedIds = ids.replace(/^,/, '');
+        }   
+    }
+
+    handleDelete() {
+        DELETE(param: 
+        {
+            IdsToDelete: this.selectedIds, 
+            sObjectType: 'Lead',
+        });
     }
 }

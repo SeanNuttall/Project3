@@ -4,7 +4,7 @@ public with sharing class LWCAccountHelper {
     public static List<Account> getAccountList(String nameAccountSearchTerm, String phoneAccountSearchTerm, 
                                                     String industryAccountSearchTerm, String ratingAccountSearchTerm){
         
-        List<Account> accList = [SELECT Name, Phone, Industry, Rating FROM Account LIMIT 50000];
+        List<Account> accList = [SELECT Id, Name, Phone, Industry, Rating FROM Account LIMIT 50000];
         List<account> temp = new List<Account>();
         for(Account acc : accList){
             String acctPhone = '';
@@ -33,7 +33,7 @@ public with sharing class LWCAccountHelper {
     @auraEnabled(cacheable=true)
     public static List<Lead> getLeadList(String nameLeadSearchTerm, String companyLeadSearchTerm, String phoneLeadSearchTerm, 
     String emailLeadSearchTerm, String ratingLeadSearchTerm, String statusLeadSearchTerm){
-        List<Lead> leadList = [SELECT Name, Company, Phone, Email, Rating, Status FROM Lead LIMIT 50000];
+        List<Lead> leadList = [SELECT Id, Name, Company, Phone, Email, Rating, Status FROM Lead LIMIT 50000];
         List<Lead> temp = new List<Lead>();
         for(Lead le : leadList){
             String leadPhone = '';
@@ -67,5 +67,17 @@ public with sharing class LWCAccountHelper {
                 }
         }
         return temp;
+    }
+
+    @AuraEnabled
+    public static void Deleter(String IdsToDelete, String sObjectType){
+        try {
+            List<String> stringIdList = idsToDelete.split(',', 0);
+            String query = 'SELECT Id FROM ' + sObjectType + ' WHERE Id IN :IdsToDelete';
+            List<sObject> Baleeted = Database.query(query);
+            Delete Baleeted;
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
     }
 }
